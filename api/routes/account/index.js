@@ -22,7 +22,7 @@ router.post("/", async (req, res, next) => {
     console.log(token);
     console.log("TOKEN ENDS");
     res.cookie("epitradeMultipass", token, {
-      domain: ".localhost",
+      domain: process.env.NODE_ENV !== "production" ? ".localhost" : ".epitrade.io",
       maxAge: 1000 * 60 * 1200,
       sameSite: "none",
       secure: true,
@@ -88,7 +88,7 @@ router.post("/login", async (req, res, next) => {
     console.log("TOKEN RECEIVED");
     console.log(token);
     res.cookie("epitradeMultipass", token, {
-      domain: ".localhost",
+      domain: process.env.NODE_ENV !== "production" ? ".localhost" : ".epitrade.io",
       maxAge: 1000 * 60 * 1200,
       sameSite: "none",
       secure: true,
